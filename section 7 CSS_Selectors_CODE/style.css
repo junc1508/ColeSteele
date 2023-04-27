@@ -1,0 +1,47 @@
+body {
+    background-color: #f1faee;
+}
+
+button {
+    font-size: 30px;
+    background-color: ;
+}
+
+#signup {
+    background-color: #1d3557;
+    color: #f1faee;
+}
+
+span {
+    color: #457b9d;
+}
+
+.tag {
+    background-color: #e63946;
+    color: #f1faee;
+    font-size: 16px;
+}
+
+span a {
+    text-decoration: none;
+    color: #a8dadc;
+}
+
+input+button {
+    background-color: pink;
+}
+
+footer>a {
+    color: #a8dadc;
+}
+
+input[type="password"] {
+    color: greenyellow;
+}
+
+
+
+.post button:hover {
+    background-color: #e63946;
+    color: #f1faee;
+}

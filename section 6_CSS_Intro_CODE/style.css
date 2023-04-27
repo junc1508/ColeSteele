@@ -1,0 +1,15 @@
+h1 {
+    text-align: center;
+    text-decoration: orange underline wavy;
+    letter-spacing: 15px;
+
+}
+
+a {
+    text-decoration: none;
+}
+
+p {
+    line-height: 2;
+    font-family: Arial, Helvetica, sans-serif;
+}

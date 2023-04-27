@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // need to make sure that it is int
+        let maximum = parseInt(prompt("Enter the maximum number!"));
+        while (!maximum) {
+            maximum = parseInt(prompt("Enter a valid number!"));
+        }
+        const target = Math.floor(Math.random() * maximum) + 1;
+
+        let guess = prompt("Enter your first guess!\n Enter q to quit");
+        // count time of guess, q also count as 1
+        let attempt = 1;
+
+        while (parseInt(guess) !== target) {
+            if (guess == 'q') break;
+            // if guess NaN
+            if (!parseInt(guess)) {
+                guess = prompt("Enter a valid number:\n Enter q to quit");
+                continue;
+            }
+            attempt++;
+            if (parseInt(guess) > target) {
+                guess = prompt("Too high! Enter a new guess:\n Enter q to quit");
+            } else {
+                guess = prompt("Too low! Enter a new guess:\n Enter q to quit");
+            }
+        }
+        if (guess == "q") {
+            console.log("OK, YOU QUIT!");
+        } else {
+            console.log(`You got it! The guess is ${target}. It took you ${attempt} guesses`);
+
+        }
+
+
+    </script>
+</body>
+
+</html>

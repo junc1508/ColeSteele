@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Todo List</h1>
+    <p>
+    <ul>
+        <li>"new" - Add A Todo</li>
+        <li>"list" - List All Todos</li>
+        <li>"delete" - Remove Sepcific Todo</li>
+        <li>"quit" - Quit App</li>
+    </ul>
+    </p>
+    <script>
+        // perform function according to enter in prompt
+        //first make "quit" work
+        //to do list
+        const lst = [];
+        while (true) {
+            let command = prompt("What Would You Like To Do: ").trim().toLowerCase();
+            if (command === "quit") {
+                break;
+            }
+            else if (command === "new") {
+                let newEntry = prompt("Enter New Todo Item: ");
+                //otherwise multiple space will cause error and exit the loop
+                const words = newEntry.trim().split(/\s\s+/);
+                for (let i = 0; i < words.length; i++) {
+                    words[i] = words[i][0].toUpperCase() + words[i].substring(1);
+                }
+                newEntry = words.join(" ");
+                if (!lst.includes(newEntry)) {
+                    lst.push(newEntry);
+                }
+            }
+            else if (command === "list") {
+                for (let i = 0; i < lst.length; i++) {
+                    console.log(`${i + 1}: ${lst[i]}`);
+                }
+            }
+            else if (command === "delete") {
+                let delAt = parseInt(prompt("Enter The Index Of Todo List To Delete: "));
+                if (Number.isNaN(delAt)) {
+                    console.log('Not a Number of Index');
+                } else if (delAt > 0 && delAt <= lst.length) {
+                    let deleted = lst[delAt - 1];
+                    lst.splice(delAt - 1, 1);
+                    console.log(`OK! ${deleted} is deleted`);
+                } else {
+                    console.log('Index Out of Range');
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
