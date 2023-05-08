@@ -1,0 +1,22 @@
+<!-- index page to show all comments -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>House Index</title>
+  </head>
+  <body>
+    <h1>Index Page</h1>
+    <ul>
+      <% for (let house of airbnb) { %>
+      <li>
+        <%= house.house %> - <b><%= house.owner %></b>
+        <a href="/houses/<%= house.id %>">Details</a>
+      </li>
+      <% } %>
+      <a href="houses/new">Create New Airbnbs</a>
+    </ul>
+  </body>
+</html>
