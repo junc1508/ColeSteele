@@ -14,33 +14,46 @@ ImageSchema.virtual("thumbnail").get(function () {
   return this.url.replace("/upload", "/upload/w_200");
 });
 
-const campgroundSchema = new Schema({
-  title: String,
-  images: [ImageSchema],
-  geometry: {
-    type: {
-      type: String, // Don't do `{ geometry: { type: String } }`
-      enum: ["Point"], // 'geometry.type' must be 'Point'
-      required: true,
+const opt = { toJSON: { virtuals: true } };
+const campgroundSchema = new Schema(
+  {
+    title: String,
+    images: [ImageSchema],
+    geometry: {
+      type: {
+        type: String, // Don't do `{ geometry: { type: String } }`
+        enum: ["Point"], // 'geometry.type' must be 'Point'
+        required: true,
+      },
+      coordinates: {
+        type: [Number],
+        required: true,
+      },
     },
-    coordinates: {
-      type: [Number],
-      required: true,
-    },
-  },
-  price: Number,
-  description: String,
-  location: String,
-  author: {
-    type: Schema.Types.ObjectId,
-    ref: "User",
-  },
-  reviews: [
-    {
+    price: Number,
+    description: String,
+    location: String,
+    author: {
       type: Schema.Types.ObjectId,
-      ref: "Review",
+      ref: "User",
     },
-  ],
+    reviews: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Review",
+      },
+    ],
+  },
+  opt
+);
+
+// properties:{
+//   popUpMarkup: '<h3>'
+// }
+campgroundSchema.virtual("properties.popUpMarkup").get(function () {
+  return `
+  <strong><a href='/campgrounds/${this._id}'>${this.title}</a></strong>
+  <p>${this.description.substring(0, 20)}...</p>`;
 });
 
 //middleware to delete reviews associated
